@@ -34,7 +34,7 @@ pub fn[T] Optional::to_option(self : Optional[T]) -> T? {
 
 ///|
 pub fn[T] Optional::undefined() -> Optional[T] {
-  Value::undefined().cast()
+  undefined.cast()
 }
 
 ///|

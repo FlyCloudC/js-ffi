@@ -28,10 +28,13 @@ pub fn[T] Nullable::to_option(self : Nullable[T]) -> T? {
 
 ///|
 pub fn[T] Nullable::null() -> Nullable[T] {
-  Value::null().cast()
+  null_.cast()
 }
 
 ///|
 pub fn[T] Nullable::from_option(value : T?) -> Nullable[T] {
-  value.map(Value::cast_from).unwrap_or_else(Value::null).cast()
+  match value {
+    Some(v) => Value::cast_from(v).cast()
+    None => Nullable::null()
+  }
 }

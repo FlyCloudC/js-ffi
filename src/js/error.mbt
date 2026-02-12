@@ -37,7 +37,7 @@ pub fn[T] Error_::wrap(
   op : () -> Value,
   map_ok? : (Value) -> T = Value::cast,
 ) -> T raise Error_ {
-  let mut res : Result[Value, Error_] = Ok(Value::undefined())
+  let mut res : Result[Value, Error_] = Ok(undefined)
   Error_::wrap_ffi(op, fn(v) { res = Ok(v) }, fn(e) { res = Err(Error_(e)) })
   match res {
     Ok(v) => map_ok(v)

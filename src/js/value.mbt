@@ -133,7 +133,7 @@ pub impl @json.FromJson for Value with from_json(json : Json, path) {
     Number(n, ..) => Value::cast_from(n)
     False => Value::cast_from(false)
     True => Value::cast_from(true)
-    Null => Value::null()
+    Null => null_
     Array(xs) => {
       let acc = Array::new(capacity=xs.length())
       for x in xs {
@@ -234,12 +234,18 @@ extern "js" fn Value::new_self_ffi(self : Value, args : Value) -> Value =
   #| (self, args) => new self(...args)
 
 ///|
-extern "js" fn Value::null() -> Value =
+extern "js" fn get_null() -> Value =
   #| () => null
 
 ///|
-extern "js" fn Value::undefined() -> Value =
+let null_ : Value = get_null()
+
+///|
+extern "js" fn get_undefined() -> Value =
   #| () => undefined
+
+///|
+let undefined : Value = get_undefined()
 
 ///|
 /// @param self The constructor function that accepts this as the first argument

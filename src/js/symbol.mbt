@@ -4,7 +4,7 @@ type Symbol
 
 ///|
 pub fn Symbol::make() -> Symbol {
-  Symbol::make_ffi(Value::undefined()).cast()
+  Symbol::make_ffi(undefined).cast()
 }
 
 ///|
